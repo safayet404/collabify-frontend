@@ -7,21 +7,20 @@ import useAuthStore from '@/store/auth.store';
 import useWorkspaceStore from '@/store/workspace.store';
 import useBoardStore from '@/store/board.store';
 import { getBoardBackground, timeAgo } from '@/lib/utils';
-import { DashboardSkeleton } from '@/components/common/Skeleton';
 
 export default function DashboardPage() {
-  const { user }        = useAuthStore();
-  const { workspaces }  = useWorkspaceStore();
-  const { boards, fetchBoards } = useBoardStore();
+  const { user } = useAuthStore();
+  const { workspaces } = useWorkspaceStore();
+  const { boards, fetchBoards, isLoading } = useBoardStore();
 
   useEffect(() => {
     workspaces.forEach(ws => fetchBoards(ws._id));
   }, [workspaces]);
 
-  if (wsLoading) return <DashboardSkeleton />;
+  if (isLoading) return <DashboardSkeleton />;
 
   const starredBoards = boards.filter(b => b.isStarred);
-  const recentBoards  = [...boards].sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)).slice(0, 6);
+  const recentBoards = [...boards].sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)).slice(0, 6);
 
   return (
     <div className="p-6 max-w-6xl mx-auto space-y-8">
@@ -41,10 +40,10 @@ export default function DashboardPage() {
       {/* Stats row */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         {[
-          { label: 'Workspaces', value: workspaces.length,              icon: <Users size={18} />,  color: '#4F46E5' },
-          { label: 'Boards',     value: boards.length,                  icon: <Layout size={18} />, color: '#7C3AED' },
-          { label: 'Starred',    value: starredBoards.length,           icon: <Star size={18} />,   color: '#F59E0B' },
-          { label: 'Active',     value: boards.filter(b => !b.isArchived).length, icon: <Zap size={18} />, color: '#10B981' },
+          { label: 'Workspaces', value: workspaces.length, icon: <Users size={18} />, color: '#4F46E5' },
+          { label: 'Boards', value: boards.length, icon: <Layout size={18} />, color: '#7C3AED' },
+          { label: 'Starred', value: starredBoards.length, icon: <Star size={18} />, color: '#F59E0B' },
+          { label: 'Active', value: boards.filter(b => !b.isArchived).length, icon: <Zap size={18} />, color: '#10B981' },
         ].map(stat => (
           <div key={stat.label} className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-4">
             <div className="flex items-center justify-between mb-2">
