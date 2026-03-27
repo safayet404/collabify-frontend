@@ -28,7 +28,10 @@ export default function CardComments({ cardId, board }) {
     const socket = getSocket();
     if (socket) {
       socket.on('comment:created', (data) => {
-        if (data.cardId === cardId) setComments(prev => [...prev, data.comment]);
+        if (data.cardId === cardId) setComments(prev => {
+          if (prev.some(c => c._id === data.comment._id)) return prev;
+          return [...prev, data.comment];
+        });
       });
       socket.on('comment:updated', (data) => {
         if (data.cardId === cardId) {
@@ -78,7 +81,10 @@ export default function CardComments({ cardId, board }) {
         parentCommentId: replyTo?._id,
       });
       if (!replyTo) {
-        setComments(prev => [...prev, { ...res.data.comment, replies: [] }]);
+        setComments(prev => {
+          if (prev.some(c => c._id === res.data.comment._id)) return prev;
+          return [...prev, { ...res.data.comment, replies: [] }];
+        });
       } else {
         setComments(prev => prev.map(c =>
           c._id === replyTo._id ? { ...c, replies: [...(c.replies || []), res.data.comment] } : c

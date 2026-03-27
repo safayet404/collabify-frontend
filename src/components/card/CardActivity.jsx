@@ -1,24 +1,26 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Loader2, Activity } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import api from '@/lib/axios';
 import { timeAgo } from '@/lib/utils';
 import { UserAvatar } from '@/app/dashboard/layout';
 
-export default function CardActivity({ cardId }) {
+export default function CardActivity({ cardId, boardId }) {
   const [activities, setActivities] = useState([]);
   const [loading,    setLoading]    = useState(true);
 
   useEffect(() => {
     const fetch = async () => {
+      const id = boardId || cardId;
+      if (!id) return;
       try {
-        const res = await api.get(`/activity/board/${cardId}`);
-        setActivities(res.data || []);
+        const res = await api.get(`/activity/board/${id}`);
+        setActivities(res.data?.items || res.data || []);
       } catch {} finally { setLoading(false); }
     };
     fetch();
-  }, [cardId]);
+  }, [boardId, cardId]);
 
   if (loading) return <div className="flex justify-center py-6"><Loader2 className="w-5 h-5 animate-spin text-gray-400" /></div>;
   if (!activities.length) return <p className="text-xs text-gray-400 text-center py-4">No activity yet</p>;

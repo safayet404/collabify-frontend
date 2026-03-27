@@ -252,7 +252,7 @@ export default function CardDetailModal({ cardId, board, onClose }) {
                 </div>
                 {activeTab === 'comments'
                   ? <CardComments cardId={cardId} board={board} />
-                  : <CardActivity cardId={cardId} />
+                  : <CardActivity cardId={cardId} boardId={card.board?._id || card.board} />
                 }
               </div>
             </div>

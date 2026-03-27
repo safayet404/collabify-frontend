@@ -80,6 +80,8 @@ const useBoardStore = create((set, get) => ({
   addList: (list) => {
     set((state) => {
       if (!state.currentBoard) return {};
+      const exists = state.currentBoard.lists?.some(l => l._id === list._id);
+      if (exists) return {};
       return {
         currentBoard: {
           ...state.currentBoard,
