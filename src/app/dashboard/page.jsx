@@ -7,6 +7,7 @@ import useAuthStore from '@/store/auth.store';
 import useWorkspaceStore from '@/store/workspace.store';
 import useBoardStore from '@/store/board.store';
 import { getBoardBackground, timeAgo } from '@/lib/utils';
+import { DashboardSkeleton } from '@/components/common/Skeleton';
 
 export default function DashboardPage() {
   const { user } = useAuthStore();
