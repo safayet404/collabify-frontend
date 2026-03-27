@@ -59,7 +59,7 @@ export default function LoginPage() {
         <div className="min-h-screen bg-linear-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center p-4">
             <div className="w-full max-w-md">
 
-                {/* Logo */}
+
                 <div className="text-center mb-8">
                     <div className="w-14 h-14 bg-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
                         <Layers className="w-8 h-8 text-white" />
@@ -68,19 +68,19 @@ export default function LoginPage() {
                     <p className="text-gray-500 mt-1 text-sm">Real-time team collaboration</p>
                 </div>
 
-                {/* Card */}
+
                 <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
 
-                    {/* Header */}
+
                     <div className="px-8 pt-8 pb-6">
                         <h2 className="text-xl font-bold text-gray-900">Welcome back</h2>
                         <p className="text-sm text-gray-500 mt-1">Sign in to your account to continue</p>
                     </div>
 
-                    {/* Form */}
+
                     <div className="px-8 pb-6 space-y-4">
 
-                        {/* Error */}
+
                         {error && (
                             <div className="bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm text-red-600 flex items-center gap-2">
                                 <span className="w-4 h-4 shrink-0">⚠️</span>
@@ -88,7 +88,7 @@ export default function LoginPage() {
                             </div>
                         )}
 
-                        {/* Email */}
+
                         <div>
                             <label className="block text-sm font-semibold text-gray-700 mb-1.5">Email</label>
                             <input
@@ -102,7 +102,7 @@ export default function LoginPage() {
                             />
                         </div>
 
-                        {/* Password */}
+
                         <div>
                             <label className="block text-sm font-semibold text-gray-700 mb-1.5">Password</label>
                             <div className="relative">
@@ -125,7 +125,7 @@ export default function LoginPage() {
                             </div>
                         </div>
 
-                        {/* Submit */}
+
                         <button
                             onClick={handleSubmit}
                             disabled={isLoading}
@@ -138,7 +138,7 @@ export default function LoginPage() {
                         </button>
                     </div>
 
-                    {/* Demo accounts */}
+
                     <div className="px-8 pb-8">
                         <div className="border-t border-gray-100 pt-6">
                             <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider text-center mb-3">
@@ -175,7 +175,6 @@ export default function LoginPage() {
                         </div>
                     </div>
 
-                    {/* Footer */}
                     <div className="px-8 py-4 bg-gray-50 border-t border-gray-100 text-center">
                         <p className="text-sm text-gray-600">
                             Don&apos;t have an account?{' '}

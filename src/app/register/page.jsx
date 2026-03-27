@@ -74,7 +74,7 @@ export default function RegisterPage() {
         <div className="min-h-screen bg-linear-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center p-4">
             <div className="w-full max-w-md">
 
-                {/* Logo */}
+
                 <div className="text-center mb-8">
                     <div className="w-14 h-14 bg-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
                         <Layers className="w-8 h-8 text-white" />
@@ -83,7 +83,7 @@ export default function RegisterPage() {
                     <p className="text-gray-500 mt-1 text-sm">Real-time team collaboration</p>
                 </div>
 
-                {/* Card */}
+
                 <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
 
                     <div className="px-8 pt-8 pb-6">
@@ -93,14 +93,13 @@ export default function RegisterPage() {
 
                     <div className="px-8 pb-6 space-y-4">
 
-                        {/* Error */}
+
                         {error && (
                             <div className="bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm text-red-600">
                                 {error}
                             </div>
                         )}
 
-                        {/* Name */}
                         <div>
                             <label className="block text-sm font-semibold text-gray-700 mb-1.5">Full Name</label>
                             <input
@@ -113,7 +112,7 @@ export default function RegisterPage() {
                             />
                         </div>
 
-                        {/* Email */}
+
                         <div>
                             <label className="block text-sm font-semibold text-gray-700 mb-1.5">Email</label>
                             <input
@@ -126,7 +125,7 @@ export default function RegisterPage() {
                             />
                         </div>
 
-                        {/* Password */}
+
                         <div>
                             <label className="block text-sm font-semibold text-gray-700 mb-1.5">Password</label>
                             <div className="relative">
@@ -144,7 +143,7 @@ export default function RegisterPage() {
                                 </button>
                             </div>
 
-                            {/* Strength bar */}
+
                             {form.password && (
                                 <div className="mt-2">
                                     <div className="flex items-center justify-between mb-1">
@@ -155,7 +154,7 @@ export default function RegisterPage() {
                                         <div className="h-1.5 rounded-full transition-all duration-300"
                                             style={{ width: strength.width, background: strength.color }} />
                                     </div>
-                                    {/* Rules */}
+
                                     <div className="grid grid-cols-2 gap-1 mt-2">
                                         {passwordRules.map(rule => (
                                             <div key={rule.id} className="flex items-center gap-1.5">
@@ -173,7 +172,7 @@ export default function RegisterPage() {
                             )}
                         </div>
 
-                        {/* Confirm password */}
+
                         <div>
                             <label className="block text-sm font-semibold text-gray-700 mb-1.5">Confirm Password</label>
                             <div className="relative">
@@ -201,7 +200,7 @@ export default function RegisterPage() {
                             )}
                         </div>
 
-                        {/* Submit */}
+
                         <button
                             onClick={handleSubmit}
                             disabled={isLoading}
@@ -221,7 +220,7 @@ export default function RegisterPage() {
                         </p>
                     </div>
 
-                    {/* Footer */}
+
                     <div className="px-8 py-4 bg-gray-50 border-t border-gray-100 text-center">
                         <p className="text-sm text-gray-600">
                             Already have an account?{' '}
