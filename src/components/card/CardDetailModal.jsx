@@ -226,13 +226,13 @@ export default function CardDetailModal({ cardId, board, onClose }) {
                   key={cl._id}
                   checklist={cl}
                   cardId={cardId}
-                  onRefresh={fetchCard}
+                  onRefresh={fetchCard} key={card._id}
                 />
               ))}
 
               {/* Attachments */}
               {card.attachments?.length > 0 && (
-                <CardAttachments card={card} onRefresh={fetchCard} />
+                <CardAttachments card={card} onRefresh={fetchCard} key={card._id} />
               )}
 
               {/* Comments + Activity tabs */}

@@ -136,7 +136,7 @@ const useBoardStore = create((set, get) => ({
         currentBoard: {
           ...state.currentBoard,
           lists: state.currentBoard.lists.map(l =>
-            l._id === listId ? { ...l, cards: [...l.cards, card] } : l
+            l._id !== listId ? l : (l.cards?.some(c => c._id === card._id) ? l : { ...l, cards: [...(l.cards || []), card] })
           ),
         },
       };

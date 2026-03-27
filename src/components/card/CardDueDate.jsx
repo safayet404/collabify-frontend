@@ -13,15 +13,20 @@ export default function CardDueDate({ cardId, card, onRefresh, onClose }) {
   const save = async () => {
     setLoading(true);
     try {
-      await api.patch(`/cards/${cardId}`, {
-        dueDate:         date ? new Date(date).toISOString() : null,
-        dueDateReminder: reminder,
-      });
+      const payload = { dueDateReminder: reminder };
+      if (date) {
+        payload.dueDate = new Date(date).toISOString();
+      } else {
+        payload.dueDate = null;
+      }
+      await api.patch(`/cards/${cardId}`, payload);
       onRefresh();
       onClose();
       toast.success('Due date updated');
-    } catch { toast.error('Failed to update due date'); }
-    finally { setLoading(false); }
+    } catch (err) {
+      console.error('Due date error:', err);
+      toast.error(err?.message || 'Failed to update due date');
+    } finally { setLoading(false); }
   };
 
   const remove = async () => {
