@@ -17,7 +17,6 @@ import { UserAvatar } from '@/app/dashboard/layout';
 import CreateBoardModal from '@/components/board/CreateBoardModal';
 import InviteMemberModal from '@/components/workspace/InviteMemberModal';
 import { WorkspaceSkeleton } from '@/components/common/Skeleton';
-import { WorkspaceSkeleton } from '@/components/common/Skeleton';
 
 const ROLE_ICONS = { owner: <Crown size={12} />, admin: <Shield size={12} />, member: <Users size={12} />, viewer: <Eye size={12} /> };
 const ROLE_COLORS = { owner: 'text-yellow-600 bg-yellow-50', admin: 'text-indigo-600 bg-indigo-50', member: 'text-gray-600 bg-gray-100', viewer: 'text-gray-400 bg-gray-50' };
@@ -29,10 +28,10 @@ export default function WorkspacePage() {
   const { boards, fetchBoards, starBoard } = useBoardStore();
   const { user } = useAuthStore();
 
-  const [activeTab,      setActiveTab]      = useState('boards');
-  const [showCreateBoard,setShowCreateBoard] = useState(false);
-  const [showInvite,     setShowInvite]      = useState(false);
-  const [loading,        setLoading]         = useState(true);
+  const [activeTab, setActiveTab] = useState('boards');
+  const [showCreateBoard, setShowCreateBoard] = useState(false);
+  const [showInvite, setShowInvite] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const load = async () => {
@@ -119,7 +118,7 @@ export default function WorkspacePage() {
       {/* Tabs */}
       <div className="flex gap-1 border-b border-gray-200 dark:border-gray-700">
         {[
-          { id: 'boards',  label: 'Boards',  count: wsBoards.length },
+          { id: 'boards', label: 'Boards', count: wsBoards.length },
           { id: 'members', label: 'Members', count: ws.members?.length },
           ...(isAdmin ? [{ id: 'settings', label: 'Settings' }] : []),
         ].map(tab => (
@@ -206,7 +205,7 @@ export default function WorkspacePage() {
                       onChange={e => handleRoleChange(memberId, e.target.value)}
                       className="text-xs border border-gray-200 dark:border-gray-600 rounded-lg px-2 py-1 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200"
                     >
-                      {['admin','member','viewer'].map(r => <option key={r} value={r}>{r}</option>)}
+                      {['admin', 'member', 'viewer'].map(r => <option key={r} value={r}>{r}</option>)}
                     </select>
                   ) : (
                     <span className={cn('flex items-center gap-1 text-xs font-medium px-2 py-1 rounded-full capitalize', ROLE_COLORS[member.role])}>
@@ -296,7 +295,7 @@ function WorkspaceSettingsForm({ ws, onSaved }) {
   const [form, setForm] = useState({ name: ws.name, description: ws.description || '', color: ws.color });
   const [saving, setSaving] = useState(false);
 
-  const COLORS = ['#4F46E5','#7C3AED','#DB2777','#DC2626','#D97706','#059669','#0891B2','#2563EB'];
+  const COLORS = ['#4F46E5', '#7C3AED', '#DB2777', '#DC2626', '#D97706', '#059669', '#0891B2', '#2563EB'];
 
   const save = async () => {
     setSaving(true);
