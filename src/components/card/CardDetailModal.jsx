@@ -21,6 +21,7 @@ import CardDueDate       from './CardDueDate';
 import CardCover         from './CardCover';
 import CardAttachments   from './CardAttachments';
 import CardMoveModal     from './CardMoveModal';
+import { CardDetailSkeleton } from '@/components/common/Skeleton';
 
 export default function CardDetailModal({ cardId, board, onClose }) {
   const { updateCard, removeCard } = useBoardStore();
@@ -103,9 +104,9 @@ export default function CardDetailModal({ cardId, board, onClose }) {
 
   if (loading) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
-        <div className="bg-white dark:bg-gray-900 rounded-2xl p-8">
-          <Loader2 className="w-8 h-8 animate-spin text-indigo-600 mx-auto" />
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60" onClick={onClose}>
+        <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-3xl">
+          <CardDetailSkeleton />
         </div>
       </div>
     );

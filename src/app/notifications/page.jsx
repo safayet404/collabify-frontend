@@ -6,6 +6,7 @@ import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 import useNotificationStore from '@/store/notification.store';
 import AppLayout from '@/app/dashboard/layout';
+import { NotificationsSkeleton } from '@/components/common/Skeleton';
 import { timeAgo, cn } from '@/lib/utils';
 
 const TYPE_CONFIG = {
@@ -91,9 +92,7 @@ export default function NotificationsPage() {
         {/* Notifications list */}
         <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 overflow-hidden">
           {isLoading ? (
-            <div className="flex items-center justify-center py-16">
-              <Loader2 className="w-6 h-6 animate-spin text-indigo-600" />
-            </div>
+            <NotificationsSkeleton />
           ) : displayed.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 text-center">
               <Bell size={40} className="text-gray-300 mb-3" />

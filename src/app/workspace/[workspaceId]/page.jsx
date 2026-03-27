@@ -16,6 +16,8 @@ import { cn, timeAgo, getBoardBackground } from '@/lib/utils';
 import { UserAvatar } from '@/app/dashboard/layout';
 import CreateBoardModal from '@/components/board/CreateBoardModal';
 import InviteMemberModal from '@/components/workspace/InviteMemberModal';
+import { WorkspaceSkeleton } from '@/components/common/Skeleton';
+import { WorkspaceSkeleton } from '@/components/common/Skeleton';
 
 const ROLE_ICONS = { owner: <Crown size={12} />, admin: <Shield size={12} />, member: <Users size={12} />, viewer: <Eye size={12} /> };
 const ROLE_COLORS = { owner: 'text-yellow-600 bg-yellow-50', admin: 'text-indigo-600 bg-indigo-50', member: 'text-gray-600 bg-gray-100', viewer: 'text-gray-400 bg-gray-50' };
@@ -74,11 +76,7 @@ export default function WorkspacePage() {
     } catch { toast.error('Failed to delete'); }
   };
 
-  if (loading) return (
-    <div className="flex items-center justify-center h-full">
-      <Loader2 className="w-8 h-8 animate-spin text-indigo-600" />
-    </div>
-  );
+  if (loading) return <WorkspaceSkeleton />;
 
   if (!ws) return (
     <div className="flex items-center justify-center h-full">

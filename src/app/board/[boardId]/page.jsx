@@ -13,6 +13,7 @@ import { getSocket, joinBoard, leaveBoard } from '@/lib/socket';
 import { getBoardBackground } from '@/lib/utils';
 import api from '@/lib/axios';
 import BoardHeader from '@/components/board/BoardHeader';
+import { BoardSkeleton } from '@/components/common/Skeleton';
 import BoardColumn from '@/components/board/BoardColumn';
 import CardItem from '@/components/card/CardItem';
 import AddListButton from '@/components/board/AddListButton';

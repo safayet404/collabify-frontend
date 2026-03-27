@@ -7,6 +7,7 @@ import useAuthStore from '@/store/auth.store';
 import useWorkspaceStore from '@/store/workspace.store';
 import useBoardStore from '@/store/board.store';
 import { getBoardBackground, timeAgo } from '@/lib/utils';
+import { DashboardSkeleton } from '@/components/common/Skeleton';
 
 export default function DashboardPage() {
   const { user }        = useAuthStore();
@@ -16,6 +17,8 @@ export default function DashboardPage() {
   useEffect(() => {
     workspaces.forEach(ws => fetchBoards(ws._id));
   }, [workspaces]);
+
+  if (wsLoading) return <DashboardSkeleton />;
 
   const starredBoards = boards.filter(b => b.isStarred);
   const recentBoards  = [...boards].sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)).slice(0, 6);
